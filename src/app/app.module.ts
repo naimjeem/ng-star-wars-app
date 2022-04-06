@@ -16,7 +16,6 @@ import { StarWarsService } from './star-wars/star-wars.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [StarWarsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

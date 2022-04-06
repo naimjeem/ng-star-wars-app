@@ -33,13 +33,6 @@ export class StarWarsListComponent implements OnInit {
         console.log(res);
         this.currentObj = res;
         this.currentList = res['results'];
-        if (this.currentObj.count !== 0) {
-          const searches: any = localStorage.getItem('recentSearches');
-          const recentSearches: any = JSON.parse(searches) || [];
-          recentSearches.push((ev.value));
-          const updateSearches: any = new Set(JSON.parse(recentSearches));
-          localStorage.setItem('recentSearches', updateSearches);
-        }
         this.cdr.detectChanges();
       }, err => {
         console.log(err);

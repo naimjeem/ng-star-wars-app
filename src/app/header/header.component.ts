@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { config } from '../star-wars/star-wars.module';
 import { StarWarsService } from '../star-wars/star-wars.service';
 
 @Component({
@@ -9,11 +10,13 @@ import { StarWarsService } from '../star-wars/star-wars.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
+  @ViewChild('searchInp') searchQ: ElementRef | any;
   @Output() search: EventEmitter<any> = new EventEmitter<any>();
   @Output() navigate: EventEmitter<any> = new EventEmitter<any>();
   menus: any = [];
   recentSearches: any = [];
-  // showRecentSearch: boolean = false;
+  query: string = '';
+  showRecentSearch: boolean = false;
 
   constructor(
     private router: Router,
@@ -24,21 +27,26 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLinks();
+    this.query = this.searchQ.nativeElement.value;
   }
 
   getRecentSearches() {
-    // this.showRecentSearch = true;
-    const searches: any = localStorage.getItem('recentSearches');
-    this.recentSearches = new Set(JSON.parse(searches)) || [];
+    this.showRecentSearch = true;
+    console.log(this.recentSearches);
   }
 
   onSearch(value: any) {
     const type = this.route.snapshot.params['type'];
     this.search.emit({type, value});
+    this.query = this.searchQ.nativeElement.value;
+    if (!this.recentSearches.some((q: string) => q === this.query)) {
+      this.recentSearches.unshift(this.query);
+    }
+    this.recentSearches.length = config.search.count;
   }
 
   clearSearch() {
-    localStorage.clear();
+    this.recentSearches = [];
   }
 
   navigateTo(url: string): void {
