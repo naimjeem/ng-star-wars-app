@@ -1,0 +1,23 @@
+<div class="topnav">
+    <span>
+        Recent Searches: 
+        <a role="button" *ngFor="let item of recentSearches" (click)="searchInp.value = item">{{item}}</a>
+        <!-- <button class="btn btn-sm" (click)="clearSearch()">Clear</button> -->
+    </span>
+    <div class="search-container">
+        <form>
+            <input type="text" placeholder="Search.." name="search" (focus)="getRecentSearches()" #searchInp>
+            <button type="button" class="btn btn-secondary" (click)="onSearch(searchInp.value)">Search</button>
+        </form>
+    </div>
+</div>
+<div>
+
+    <ul class="nav">
+        <li class="nav-item" role="button" *ngFor="let menu of menus">
+            <a class="nav-link" aria-current="page" (click)="navigateTo(menu?.value)" [routerLink]="['/', menu?.key]"
+                [routerLinkActive]="['active']">{{menu?.key | titlecase}}</a>
+        </li>
+    </ul>
+
+</div>

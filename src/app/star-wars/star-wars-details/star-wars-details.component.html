@@ -1,0 +1,28 @@
+<app-header></app-header>
+<ng-container>
+    <li class="list-group-item">Title: {{details?.name || details?.title}}</li>
+    <ul class="list-group" *ngIf="type === 'films'">
+        <li class="list-group-item">Episode ID: {{details?.episode_id}}</li>
+        <li class="list-group-item">Opening_crawl: {{details?.opening_crawl}}</li>
+        <li class="list-group-item">Director: {{details?.director}}</li>
+        <li class="list-group-item">Producer: {{details?.producer}}</li>
+    </ul>
+    <ul class="list-group" *ngIf="type === 'people'">
+        <li class="list-group-item">Height: {{heightType(details?.height)}}</li>
+        <li class="list-group-item">Homeworld: {{homeworld}}</li>
+    </ul>
+    <ul class="list-group" *ngIf="type === 'starships'">
+        <li class="list-group-item">Length: {{lengthType(details?.length)}}</li>
+    </ul>
+</ng-container>
+
+<ng-container *ngIf="type !== 'people' && type !== 'starships'">
+    <ul class="list-group">
+        <li class="list-group-item">Work in Progress</li>
+    </ul>
+</ng-container>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        <button class="page-link" (click)="back()">Back</button>
+    </ul>
+</nav>
