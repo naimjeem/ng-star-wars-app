@@ -6,7 +6,7 @@
     </span>
     <div class="search-container">
         <form>
-            <input type="text" placeholder="Search.." name="search" (focus)="getRecentSearches()" #searchInp>
+            <input type="text" placeholder="Search.." #searchInp>
             <button type="button" class="btn btn-secondary" (click)="onSearch(searchInp.value)">Search</button>
         </form>
     </div>

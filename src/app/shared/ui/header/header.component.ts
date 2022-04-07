@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { config } from '../../../star-wars/star-wars.module';
+import { environment } from 'src/environments/environment';
 import { StarWarsService } from '../../../star-wars/star-wars.service';
 
 @Component({
@@ -11,11 +11,12 @@ import { StarWarsService } from '../../../star-wars/star-wars.service';
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('searchInp') searchQ: ElementRef | any;
+  @Input() searchType: string;
   @Output() search: EventEmitter<any> = new EventEmitter<any>();
   @Output() navigate: EventEmitter<any> = new EventEmitter<any>();
   showRecentSearch: boolean = false;
   query: string = '';
-  recentSearches: [] = [];
+  recentSearches: [] | any;
   menus: { key: string, value: string }[] = [];
 
   constructor(
@@ -26,9 +27,11 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.getLinks();
     this.setMenu();
-    this.query = this.searchQ.nativeElement.value;
+    const searchHistory = localStorage.getItem(this.searchType);
+    this.recentSearches = JSON.parse(searchHistory as string);
+    console.log(this.recentSearches);
+    
   }
 
   setMenu(): void {
@@ -42,45 +45,27 @@ export class HeaderComponent implements OnInit {
     ];
   }
 
-  getRecentSearches() {
-    this.showRecentSearch = true;
-    console.log(this.recentSearches);
-  }
-
   onSearch(value: string): void {
-    // const type = this.route.snapshot.params['type'];
     this.search.emit(value);
-    // this.query = this.searchQ.nativeElement.value;
-    // if (!this.recentSearches.some((q: string) => q === this.query)) {
-    //   this.recentSearches.unshift(this.query);
-    // }
-    // if (this.recentSearches.length > config.search.count) {
-    //   this.recentSearches.length = config.search.count;
-    // }
+    this.query = this.searchQ.nativeElement.value;
+    console.log(this.query);
+    this.recentSearches.unshift(this.query);
+    this.recentSearches = [...new Set(this.recentSearches)];
+    console.log(this.recentSearches);
+    const updatedSearchArr = JSON.stringify(this.recentSearches)
+    localStorage.setItem(this.searchType, updatedSearchArr);
+    if (environment.config.search.count < this.recentSearches.length) {
+      this.recentSearches.length = environment.config.search.count;
+    }
   }
 
-  clearSearch() {
+  clearSearch(): void {
     this.recentSearches = [];
+    localStorage.setItem(this.searchType, this.recentSearches);
   }
 
   navigateTo(url: string): void {
     this.navigate.emit(url);
   }
-
-  // getLinks() {
-  //   this.starWarsService.root()
-  //     .subscribe(res => {
-  //       const items = Object.entries(res);
-  //       items.forEach(([key: string, value: string]): void => {
-  //         console.log(key, value);
-  //         this.menus.push({ key, value });
-  //         this.cdr.detectChanges();
-  //       });
-        
-  //     }, err => {
-  //       console.log(err);
-        
-  //     })
-  // }
 
 }

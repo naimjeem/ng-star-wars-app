@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StarWarsService } from 'src/app/star-wars/star-wars.service';
 import { environment } from 'src/environments/environment';
@@ -11,7 +11,6 @@ import { PeopleService } from '../people.service';
   styleUrls: ['./people-list.component.scss']
 })
 export class PeopleListComponent implements OnInit {
-
   currentObj: PeopleList;
   currentList: People[];
   endpoint: string;

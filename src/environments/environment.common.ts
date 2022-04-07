@@ -9,6 +9,9 @@ export function getConfig() {
             species: baseUrl + 'species/',
             starships: baseUrl + 'starships/',
             vehicles: baseUrl + 'vehicles/',
+        },
+        search: {
+            count: 3,
         }
     }
 }

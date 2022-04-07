@@ -7,6 +7,11 @@ import { PeopleDetailsComponent } from './people-details/people-details.componen
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PeopleService } from './people.service';
 
+export let config = {
+  search: {
+    count: 3,
+  }
+}
 
 @NgModule({
   declarations: [

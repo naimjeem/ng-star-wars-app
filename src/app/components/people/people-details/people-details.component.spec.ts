@@ -26,9 +26,6 @@ describe('PeopleDetailsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should get id', () => {
-    expect(component.peopleId).toEqual('1');
-  });
   it('should get details', () => {
     return expect(component.getDetails()).toEqual();
   });
