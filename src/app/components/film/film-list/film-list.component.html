@@ -11,13 +11,13 @@
 
     </ul>
     <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end">
-            <li class="page-item" [ngClass]="{'disabled': currentObj?.previous === null}" (click)="pagination(currentObj.previous)">
-                <button class="page-link">Previous</button>
-            </li>
-            <li class="page-item" [ngClass]="{'disabled': currentObj?.next === null}" (click)="pagination(currentObj.next)">
-                <button class="page-link">Next</button>
-            </li>
-        </ul>
-    </nav>
+    <ul class="pagination justify-content-end">
+        <li class="page-item" [ngClass]="{'disabled': currentObj?.previous === null}">
+            <button class="page-link" (click)="pagination(currentObj.previous)">Previous</button>
+        </li>
+        <li class="page-item" [ngClass]="{'disabled': currentObj?.next === null}">
+            <button class="page-link" (click)="pagination(currentObj.next)">Next</button>
+        </li>
+    </ul>
+</nav>
 </div>
