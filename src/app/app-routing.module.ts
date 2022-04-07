@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'planets',
     loadChildren: () => import('./components/planet/planet.module').then(m => m.PlanetModule),
   },
+  {
+    path: 'species',
+    loadChildren: () => import('./components/species/species.module').then(m => m.SpeciesModule),
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,23 @@
+<app-header [searchType]="'SPECIES_SEARCH'" (search)="search($event)" (navigate)="search($event)"></app-header>
+<div *ngIf="!isLoaded">
+    <h3>Loading ...</h3>
+</div>
+<div *ngIf="isLoaded">
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of currentList">
+            {{item?.name}}
+            <button type="button" class="btn btn-link" (click)="gotToDetails(item?.url)">More Details</button>
+        </li>
+
+    </ul>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+            <li class="page-item" [ngClass]="{'disabled': currentObj?.previous === null}" (click)="pagination(currentObj.previous)">
+                <button class="page-link">Previous</button>
+            </li>
+            <li class="page-item" [ngClass]="{'disabled': currentObj?.next === null}" (click)="pagination(currentObj.next)">
+                <button class="page-link">Next</button>
+            </li>
+        </ul>
+    </nav>
+</div>

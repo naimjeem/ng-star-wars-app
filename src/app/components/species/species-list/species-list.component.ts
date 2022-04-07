@@ -1,36 +1,36 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PlanetList, Planet } from '../planet';
-import { PlanetService } from '../planet.service';
+import { SpeciesList, Species } from '../species';
+import { SpeciesService } from '../species.service';
 
 @Component({
-  selector: 'app-planet-list',
-  templateUrl: './planet-list.component.html',
-  styleUrls: ['./planet-list.component.scss'],
+  selector: 'app-species-list',
+  templateUrl: './species-list.component.html',
+  styleUrls: ['./species-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PlanetListComponent implements OnInit {
+export class SpeciesListComponent implements OnInit {
 
-  currentObj: PlanetList;
-  currentList: Planet[];
+  currentObj: SpeciesList;
+  currentList: Species[];
   endpoint: string;
   isLoaded: boolean = false;
 
   constructor (
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private planetService: PlanetService,
+    private speciesService: SpeciesService,
   ) { }
 
   ngOnInit(): void {
-    this.endpoint = this.planetService.endpoint;
+    this.endpoint = this.speciesService.endpoint;
     this.getList();
   }
 
   search(value: string): void {
     this.isLoaded = false;
-    this.planetService.getPlanetBySearch(value)
-      .subscribe((res: PlanetList) => {
+    this.speciesService.getSpeciesBySearch(value)
+      .subscribe((res: SpeciesList) => {
         console.log(res);
         this.currentObj = res;
         this.currentList = res['results'];
@@ -43,8 +43,8 @@ export class PlanetListComponent implements OnInit {
 
   getList(): void {
     this.isLoaded = false;
-    this.planetService.getPlanet()
-     .subscribe((res: PlanetList): void => {
+    this.speciesService.getSpecies()
+     .subscribe((res: SpeciesList): void => {
        console.log(res);
        this.currentObj = res;
        this.currentList = res['results'];
@@ -59,8 +59,8 @@ export class PlanetListComponent implements OnInit {
   pagination(url: string): void {
     this.isLoaded = false;
     const pageQ = url.split(this.endpoint)[1];
-    this.planetService.getPlanetByPage(pageQ)
-     .subscribe((res: PlanetList): void => {
+    this.speciesService.getSpeciesByPage(pageQ)
+     .subscribe((res: SpeciesList): void => {
        console.log(res);
        this.currentObj = res;
        this.currentList = res['results'];
@@ -75,7 +75,7 @@ export class PlanetListComponent implements OnInit {
   gotToDetails(url: any): void {
     const params = url.split(this.endpoint)[1];
     const id = params.split('/')[0];
-    this.router.navigate(['/planets', id]);
+    this.router.navigate(['/species', id]);
   } 
 
 }
