@@ -69,11 +69,10 @@ export class PeopleListComponent implements OnInit {
        this.cdr.detectChanges();
      }, (err: Error): void => {
        console.log(err);
-       
-     })
+     });
   }
 
-  gotToDetails(url: any): void {
+  gotToDetails(url: string | any): void {
     const params = url.split(this.endpoint)[1];
     const id = params.split('/')[0];
     this.router.navigate(['/people', id]);
