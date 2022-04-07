@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { StarWarsService } from '../../../star-wars/star-wars.service';
 
 @Component({
   selector: 'app-header',
@@ -20,10 +19,7 @@ export class HeaderComponent implements OnInit {
   menus: { key: string, value: string }[] = [];
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef,
-    private starWarsService: StarWarsService,
   ) { }
 
   ngOnInit(): void {

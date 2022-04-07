@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Planet } from 'src/app/star-wars/star-wars.interface';
 import { People } from '../people';
 import { PeopleService } from '../people.service';
 import { Location } from '@angular/common';
+import { Planet } from '../../planet/planet';
 
 @Component({
   selector: 'app-people-details',

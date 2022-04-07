@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, catchError, throwError } from 'rxjs';
-import { Planet } from 'src/app/star-wars/star-wars.interface';
 import { environment } from 'src/environments/environment';
+import { Planet } from '../planet/planet';
 import { People, PeopleList } from './people';
 
 @Injectable({

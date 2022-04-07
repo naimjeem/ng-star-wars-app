@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { StarWarsService } from 'src/app/star-wars/star-wars.service';
-import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 import { People, PeopleList } from '../people';
 import { PeopleService } from '../people.service';
 
