@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   }
   
   init(): void {
+    
     localStorage.setItem('PEOPLE_SEARCH', '[]');
     localStorage.setItem('FILM_SEARCH', '[]');
     localStorage.setItem('PLANET_SEARCH', '[]');

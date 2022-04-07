@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StarWarsService } from 'src/app/star-wars/star-wars.service';
 import { environment } from 'src/environments/environment';
@@ -8,7 +8,8 @@ import { PeopleService } from '../people.service';
 @Component({
   selector: 'app-people-list',
   templateUrl: './people-list.component.html',
-  styleUrls: ['./people-list.component.scss']
+  styleUrls: ['./people-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PeopleListComponent implements OnInit {
   currentObj: PeopleList;

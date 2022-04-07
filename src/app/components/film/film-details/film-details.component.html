@@ -1,12 +1,16 @@
 <app-header></app-header>
-
-<ul class="list-group">
-    <li class="list-group-item">Title: {{details?.title}}</li>
-    <li class="list-group-item">Episode ID: {{details?.episode_id}}</li>
-    <li class="list-group-item">Opening_crawl: {{details?.opening_crawl}}</li>
-    <li class="list-group-item">Director: {{details?.director}}</li>
-    <li class="list-group-item">Producer: {{details?.producer}}</li>
-</ul>
+<div *ngIf="!isLoaded">
+    <h3>Loading ...</h3>
+</div>
+<div *ngIf="isLoaded">
+    <ul class="list-group">
+        <li class="list-group-item">Title: {{details?.title}}</li>
+        <li class="list-group-item">Episode ID: {{details?.episode_id}}</li>
+        <li class="list-group-item">Opening_crawl: {{details?.opening_crawl}}</li>
+        <li class="list-group-item">Director: {{details?.director}}</li>
+        <li class="list-group-item">Producer: {{details?.producer}}</li>
+    </ul>
+</div>
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">

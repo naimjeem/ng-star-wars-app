@@ -1,37 +1,38 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { FilmService } from '../film.service';
-import { Film } from '../film';
+import { Planet } from '../planet';
+import { PlanetService } from '../planet.service';
 
 @Component({
-  selector: 'app-film-details',
-  templateUrl: './film-details.component.html',
-  styleUrls: ['./film-details.component.scss'],
+  selector: 'app-planet-details',
+  templateUrl: './planet-details.component.html',
+  styleUrls: ['./planet-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FilmDetailsComponent implements OnInit {
+export class PlanetDetailsComponent implements OnInit {
+
   endpoint: string;
-  filmId: string;
-  details: Film;
+  planetId: string;
+  details: Planet;
   isLoaded: boolean = false;
 
   constructor(
     private location: Location,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private filmService: FilmService,
+    private planetService: PlanetService,
   ) { }
 
   ngOnInit(): void {
-    this.endpoint = this.filmService.endpoint;
-    this.filmId = this.route.snapshot.params['id'];
+    this.endpoint = this.planetService.endpoint;
+    this.planetId = this.route.snapshot.params['id'];
     this.getDetails();
   }
 
   getDetails(): void {
-    this.filmService.getFilmById(this.filmId)
-      .subscribe((res: Film): void => {
+    this.planetService.getPlanetById(this.planetId)
+      .subscribe((res: Planet): void => {
         console.log(res);
         this.details = res;
         this.isLoaded = true;

@@ -21,7 +21,11 @@ const routes: Routes = [
   },
   {
     path: 'starships',
-    loadChildren: () => import('./components/starship/startship.module').then(m => m.StartshipModule),
+    loadChildren: () => import('./components/starship/starship.module').then(m => m.StarshipModule),
+  },
+  {
+    path: 'planets',
+    loadChildren: () => import('./components/planet/planet.module').then(m => m.PlanetModule),
   },
 ];
 

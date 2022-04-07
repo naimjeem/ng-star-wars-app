@@ -4,9 +4,9 @@
 
 Run `ng serve` or `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## App struncture
+## App structure
 
-Initily the App will navigate to `/people` route and load the list of Star Wars People from `https://swapi.dev/api/`
+Initially the App will navigate to `/people` route and load the list of Star Wars People from `https://swapi.dev/api/`
 
 Header component has the nav link to navigate between routes
 

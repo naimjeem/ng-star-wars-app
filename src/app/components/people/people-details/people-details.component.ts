@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Planet } from 'src/app/star-wars/star-wars.interface';
 import { People } from '../people';
@@ -8,7 +8,8 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-people-details',
   templateUrl: './people-details.component.html',
-  styleUrls: ['./people-details.component.scss']
+  styleUrls: ['./people-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PeopleDetailsComponent implements OnInit {
   endpoint: string;
