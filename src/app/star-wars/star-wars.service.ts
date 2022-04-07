@@ -27,9 +27,9 @@ export class StarWarsService {
 
   constructor(private http: HttpClient) { }
 
-  root(): Observable<any> {
-    return this.http.get(environment.baseUrl);
-  }
+  // root(): Observable<any> {
+  //   return this.http.get(environment.baseUrl);
+  // }
 
   list(url: string): Observable<PeopleList | PlanetList | FilmList | SpeciesList | VehicleList | StarshipList> {
     return this.http.get<PeopleList | PlanetList | FilmList | SpeciesList | VehicleList | StarshipList>(url)

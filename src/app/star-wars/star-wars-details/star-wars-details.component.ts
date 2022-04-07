@@ -26,10 +26,10 @@ export class StarWarsDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.type = this.route.snapshot.params['type'];
     const id = this.route.snapshot.params['id'];
-    this.getDetails(environment.baseUrl + `${this.type}/${id}`);
+    this.getDetails(environment.config.baseUrl + `${this.type}/${id}`);
   }
 
-  heightType(value: any) {
+  heightType(value: any): string {
     switch (value) {
       case value > 200:
         return 'High';
@@ -45,7 +45,7 @@ export class StarWarsDetailsComponent implements OnInit {
     }
   }
 
-  lengthType(value: any) {
+  lengthType(value: any): string {
     switch (value) {
       case value > 1000:
         return 'Large';

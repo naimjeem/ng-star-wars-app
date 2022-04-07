@@ -1,5 +1,9 @@
+import { getConfig } from './environment.common';
+
 export const environment = {
-  baseUrl: 'https://swapi.dev/api/',
-  production: false
+  production: false,
+  config: {
+    ...getConfig()
+  }
 };
 

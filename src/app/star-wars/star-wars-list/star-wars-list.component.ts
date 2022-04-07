@@ -23,12 +23,12 @@ export class StarWarsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.type = this.route.snapshot.params['type'] || 'people';    
-    this.getList(environment.baseUrl + this.type);
+    this.getList(environment.config.baseUrl + this.type);
   }
 
   search(ev: any) {
     console.log(ev);
-    this.starWarsService.search(environment.baseUrl + ev.type, ev.value)
+    this.starWarsService.search(environment.config.baseUrl + ev.type, ev.value)
       .subscribe(res => {
         console.log(res);
         this.currentObj = res;
@@ -44,7 +44,7 @@ export class StarWarsListComponent implements OnInit {
     console.log(url);
     
     this.starWarsService.list(url)
-     .subscribe(res => {
+     .subscribe((res) => {
        console.log(res);
        this.currentObj = res;
        this.currentList = res['results'];

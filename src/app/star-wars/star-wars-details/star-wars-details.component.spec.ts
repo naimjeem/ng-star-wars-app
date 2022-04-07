@@ -1,5 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing'; 
 import { StarWarsService } from '../star-wars.service';
 
 import { StarWarsDetailsComponent } from './star-wars-details.component';
@@ -11,7 +12,7 @@ describe('StarWarsDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule],
       declarations: [ StarWarsDetailsComponent ],
       providers: [StarWarsService]
     })
@@ -20,15 +21,18 @@ describe('StarWarsDetailsComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StarWarsDetailsComponent);
-    httpTestingController = TestBed.get(HttpTestingController)
+    httpTestingController = TestBed.get(HttpTestingController);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should get details', () => {
-    expect(component.details).toBe({})
+    return expect(component.getDetails('https://swapi.dev/api/vehicles/8/')).toEqual();
   });
   it('heightType should', () => {
-    expect(component.heightType).toBeLessThanOrEqual
+    expect(component.heightType('250')).toBe('High')
+  });
+  it('lengthType should', () => {
+    expect(component.lengthType('500')).toBe('Large')
   });
 });
