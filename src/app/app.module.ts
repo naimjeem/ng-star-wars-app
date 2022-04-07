@@ -4,8 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/ui/header/header.component';
-import { StarWarsService } from './star-wars/star-wars.service';
 
 @NgModule({
   declarations: [

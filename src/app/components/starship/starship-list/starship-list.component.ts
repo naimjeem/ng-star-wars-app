@@ -1,50 +1,49 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { StarWarsService } from 'src/app/star-wars/star-wars.service';
-import { environment } from 'src/environments/environment';
-import { People, PeopleList } from '../people';
-import { PeopleService } from '../people.service';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { StarshipList, Starship } from '../starship';
+import { StarshipService } from '../starship.service';
 
 @Component({
-  selector: 'app-people-list',
-  templateUrl: './people-list.component.html',
-  styleUrls: ['./people-list.component.scss']
+  selector: 'app-starship-list',
+  templateUrl: './starship-list.component.html',
+  styleUrls: ['./starship-list.component.scss']
 })
-export class PeopleListComponent implements OnInit {
-  currentObj: PeopleList;
-  currentList: People[];
+export class StarshipListComponent implements OnInit {
+
+  currentObj: StarshipList;
+  currentList: Starship[];
   endpoint: string;
   isLoaded: boolean = false;
 
   constructor (
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private peopleService: PeopleService,
+    private starshipService: StarshipService,
   ) { }
 
   ngOnInit(): void {
-    this.endpoint = this.peopleService.endpoint;
+    this.endpoint = this.starshipService.endpoint;
     this.getList();
   }
 
   search(value: string): void {
     this.isLoaded = false;
-    this.peopleService.getPeopleBySearch(value)
-      .subscribe((res: PeopleList): void => {
+    this.starshipService.getStarshipBySearch(value)
+      .subscribe((res: StarshipList) => {
         console.log(res);
         this.currentObj = res;
         this.currentList = res['results'];
         this.isLoaded = true;
         this.cdr.detectChanges();
-      }, (err: Error): void => {
+      }, (err: Error) => {
         console.log(err);
       });
   }
 
   getList(): void {
     this.isLoaded = false;
-    this.peopleService.getPeople()
-     .subscribe((res: PeopleList) => {
+    this.starshipService.getStarship()
+     .subscribe((res: StarshipList): void => {
        console.log(res);
        this.currentObj = res;
        this.currentList = res['results'];
@@ -52,15 +51,14 @@ export class PeopleListComponent implements OnInit {
        this.cdr.detectChanges();
      }, (err: Error): void => {
        console.log(err);
-       
      })
   }
 
   pagination(url: string): void {
     this.isLoaded = false;
     const pageQ = url.split(this.endpoint)[1];
-    this.peopleService.getPeopleByPage(pageQ)
-     .subscribe((res: PeopleList): void => {
+    this.starshipService.getStarshipByPage(pageQ)
+     .subscribe((res: StarshipList) => {
        console.log(res);
        this.currentObj = res;
        this.currentList = res['results'];
@@ -68,13 +66,13 @@ export class PeopleListComponent implements OnInit {
        this.cdr.detectChanges();
      }, (err: Error): void => {
        console.log(err);
-     });
+     })
   }
 
-  gotToDetails(url: string | any): void {
+  gotToDetails(url: any): void {
     const params = url.split(this.endpoint)[1];
     const id = params.split('/')[0];
-    this.router.navigate(['/people', id]);
+    this.router.navigate(['/starships', id]);
   } 
 
 }

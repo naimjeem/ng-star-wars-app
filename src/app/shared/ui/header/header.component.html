@@ -1,4 +1,4 @@
-<div class="topnav">
+<div class="topnav" *ngIf="recentSearches">
     <span class="btn-group mr-2" *ngIf="recentSearches.length > 0">
         Recent Searches: 
         <a role="button" *ngFor="let item of recentSearches" (click)="searchInp.value = item">{{item}}</a>

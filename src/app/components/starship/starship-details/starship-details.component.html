@@ -1,0 +1,17 @@
+<app-header></app-header>
+<div *ngIf="!isLoaded">
+    <h3>Loading ...</h3>
+</div>
+<div *ngIf="isLoaded">
+    <ul class="list-group">
+        <li class="list-group-item">Title: {{details?.name}}</li>
+        <li class="list-group-item">Height: {{lengthType(details?.length)}}</li>
+        <li class="list-group-item">Work in Progress</li>
+    </ul>
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        <button class="page-link" (click)="back()">Back</button>
+    </ul>
+</nav>

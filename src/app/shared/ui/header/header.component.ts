@@ -12,8 +12,8 @@ import { StarWarsService } from '../../../star-wars/star-wars.service';
 export class HeaderComponent implements OnInit {
   @ViewChild('searchInp') searchQ: ElementRef | any;
   @Input() searchType: string;
-  @Output() search: EventEmitter<any> = new EventEmitter<any>();
-  @Output() navigate: EventEmitter<any> = new EventEmitter<any>();
+  @Output() search: EventEmitter<string> = new EventEmitter<string>();
+  @Output() navigate: EventEmitter<string> = new EventEmitter<string>();
   showRecentSearch: boolean = false;
   query: string = '';
   recentSearches: [] | any;
@@ -46,6 +46,8 @@ export class HeaderComponent implements OnInit {
   }
 
   onSearch(value: string): void {
+    console.log(this.route.snapshot.params);
+    
     this.search.emit(value);
     this.query = this.searchQ.nativeElement.value;
     console.log(this.query);
