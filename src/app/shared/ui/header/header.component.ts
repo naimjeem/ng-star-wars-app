@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
 
   clearSearch(): void {
     this.recentSearches = [];
-    localStorage.setItem(this.searchType, this.recentSearches);
+    localStorage.setItem(this.searchType, JSON.stringify(this.recentSearches));
   }
 
 }
