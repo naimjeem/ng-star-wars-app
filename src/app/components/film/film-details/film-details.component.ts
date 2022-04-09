@@ -32,12 +32,12 @@ export class FilmDetailsComponent implements OnInit {
   getDetails(): void {
     this.filmService.getFilmById(this.filmId)
       .subscribe((res: Film): void => {
-        console.log(res);
+        
         this.details = res;
         this.isLoaded = true;
         this.cdr.detectChanges();
       }, (err: Error): void => {
-        console.log(err);
+        throw err;
       });
   }
 

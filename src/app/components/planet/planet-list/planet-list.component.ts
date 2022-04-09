@@ -31,13 +31,13 @@ export class PlanetListComponent implements OnInit {
     this.isLoaded = false;
     this.planetService.getPlanetBySearch(value)
       .subscribe((res: PlanetList) => {
-        console.log(res);
+        
         this.currentObj = res;
         this.currentList = res['results'];
         this.isLoaded = true;
         this.cdr.detectChanges();
       }, (err: Error): void => {
-        console.log(err);
+        throw err;
       });
   }
 
@@ -45,13 +45,13 @@ export class PlanetListComponent implements OnInit {
     this.isLoaded = false;
     this.planetService.getPlanet()
      .subscribe((res: PlanetList): void => {
-       console.log(res);
+       
        this.currentObj = res;
        this.currentList = res['results'];
        this.isLoaded = true;
        this.cdr.detectChanges();
      }, (err: Error): void => {
-       console.log(err);
+       
        
      })
   }
@@ -61,13 +61,13 @@ export class PlanetListComponent implements OnInit {
     const pageQ = url.split(this.endpoint)[1];
     this.planetService.getPlanetByPage(pageQ)
      .subscribe((res: PlanetList): void => {
-       console.log(res);
+       
        this.currentObj = res;
        this.currentList = res['results'];
        this.isLoaded = true;
        this.cdr.detectChanges();
      }, (err: Error): void => {
-       console.log(err);
+       
        
      })
   }

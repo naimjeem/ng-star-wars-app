@@ -31,13 +31,13 @@ export class SpeciesListComponent implements OnInit {
     this.isLoaded = false;
     this.speciesService.getSpeciesBySearch(value)
       .subscribe((res: SpeciesList) => {
-        console.log(res);
+        
         this.currentObj = res;
         this.currentList = res['results'];
         this.isLoaded = true;
         this.cdr.detectChanges();
       }, (err: Error): void => {
-        console.log(err);
+        throw err;
       });
   }
 
@@ -45,13 +45,13 @@ export class SpeciesListComponent implements OnInit {
     this.isLoaded = false;
     this.speciesService.getSpecies()
      .subscribe((res: SpeciesList): void => {
-       console.log(res);
+       
        this.currentObj = res;
        this.currentList = res['results'];
        this.isLoaded = true;
        this.cdr.detectChanges();
      }, (err: Error): void => {
-       console.log(err);
+       
        
      })
   }
@@ -61,13 +61,13 @@ export class SpeciesListComponent implements OnInit {
     const pageQ = url.split(this.endpoint)[1];
     this.speciesService.getSpeciesByPage(pageQ)
      .subscribe((res: SpeciesList): void => {
-       console.log(res);
+       
        this.currentObj = res;
        this.currentList = res['results'];
        this.isLoaded = true;
        this.cdr.detectChanges();
      }, (err: Error): void => {
-       console.log(err);
+       
        
      })
   }

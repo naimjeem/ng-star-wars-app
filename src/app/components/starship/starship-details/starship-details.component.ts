@@ -32,12 +32,12 @@ export class StarshipDetailsComponent implements OnInit {
   getDetails(): void {
     this.starshipService.getStarshipById(this.starshipId)
       .subscribe((res: Starship): void => {
-        console.log(res);
+        
         this.details = res;
         this.isLoaded = true;
         this.cdr.detectChanges();
       }, (err: Error): void => {
-        console.log(err);
+        throw err;
       });
   }
 

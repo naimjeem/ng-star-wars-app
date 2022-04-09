@@ -31,13 +31,13 @@ export class VehicleListComponent implements OnInit {
     this.isLoaded = false;
     this.vehicleService.getVehicleBySearch(value)
       .subscribe((res: VehicleList) => {
-        console.log(res);
+        
         this.currentObj = res;
         this.currentList = res['results'];
         this.isLoaded = true;
         this.cdr.detectChanges();
       }, (err: Error): void => {
-        console.log(err);
+        throw err;
       });
   }
 
@@ -45,13 +45,13 @@ export class VehicleListComponent implements OnInit {
     this.isLoaded = false;
     this.vehicleService.getVehicle()
      .subscribe((res: VehicleList): void => {
-       console.log(res);
+       
        this.currentObj = res;
        this.currentList = res['results'];
        this.isLoaded = true;
        this.cdr.detectChanges();
      }, (err: Error): void => {
-       console.log(err);
+       
        
      })
   }
@@ -61,13 +61,13 @@ export class VehicleListComponent implements OnInit {
     const pageQ = url.split(this.endpoint)[1];
     this.vehicleService.getVehicleByPage(pageQ)
      .subscribe((res: VehicleList): void => {
-       console.log(res);
+       
        this.currentObj = res;
        this.currentList = res['results'];
        this.isLoaded = true;
        this.cdr.detectChanges();
      }, (err: Error): void => {
-       console.log(err);
+       
        
      })
   }

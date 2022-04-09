@@ -29,14 +29,13 @@ export class StarshipListComponent implements OnInit {
   search(value: string): void {
     this.isLoaded = false;
     this.starshipService.getStarshipBySearch(value)
-      .subscribe((res: StarshipList) => {
-        console.log(res);
+      .subscribe((res: StarshipList): void => {
         this.currentObj = res;
         this.currentList = res['results'];
         this.isLoaded = true;
         this.cdr.detectChanges();
-      }, (err: Error) => {
-        console.log(err);
+      }, (err: Error): void => {
+        throw err;
       });
   }
 
@@ -44,14 +43,13 @@ export class StarshipListComponent implements OnInit {
     this.isLoaded = false;
     this.starshipService.getStarship()
      .subscribe((res: StarshipList): void => {
-       console.log(res);
        this.currentObj = res;
        this.currentList = res['results'];
        this.isLoaded = true;
        this.cdr.detectChanges();
      }, (err: Error): void => {
-       console.log(err);
-     })
+        throw err;
+      });
   }
 
   pagination(url: string): void {
@@ -59,14 +57,14 @@ export class StarshipListComponent implements OnInit {
     const pageQ = url.split(this.endpoint)[1];
     this.starshipService.getStarshipByPage(pageQ)
      .subscribe((res: StarshipList) => {
-       console.log(res);
+       
        this.currentObj = res;
        this.currentList = res['results'];
        this.isLoaded = true;
        this.cdr.detectChanges();
      }, (err: Error): void => {
-       console.log(err);
-     })
+        throw err;
+      });
   }
 
   gotToDetails(url: any): void {

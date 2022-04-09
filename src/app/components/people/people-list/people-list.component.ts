@@ -30,29 +30,26 @@ export class PeopleListComponent implements OnInit {
     this.isLoaded = false;
     this.peopleService.getPeopleBySearch(value)
       .subscribe((res: PeopleList): void => {
-        console.log(res);
         this.currentObj = res;
         this.currentList = res['results'];
         this.isLoaded = true;
         this.cdr.detectChanges();
       }, (err: Error): void => {
-        console.log(err);
+        throw err;
       });
   }
 
   getList(): void {
     this.isLoaded = false;
     this.peopleService.getPeople()
-     .subscribe((res: PeopleList) => {
-       console.log(res);
+     .subscribe((res: PeopleList): void => {
        this.currentObj = res;
        this.currentList = res['results'];
        this.isLoaded = true;
        this.cdr.detectChanges();
      }, (err: Error): void => {
-       console.log(err);
-       
-     })
+        throw err;
+      });
   }
 
   pagination(url: string): void {
@@ -60,14 +57,14 @@ export class PeopleListComponent implements OnInit {
     const pageQ = url.split(this.endpoint)[1];
     this.peopleService.getPeopleByPage(pageQ)
      .subscribe((res: PeopleList): void => {
-       console.log(res);
+       
        this.currentObj = res;
        this.currentList = res['results'];
        this.isLoaded = true;
        this.cdr.detectChanges();
      }, (err: Error): void => {
-       console.log(err);
-     });
+        throw err;
+      });;
   }
 
   gotToDetails(url: string | any): void {

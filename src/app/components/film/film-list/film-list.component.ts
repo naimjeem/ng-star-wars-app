@@ -31,13 +31,13 @@ export class FilmListComponent implements OnInit {
     this.isLoaded = false;
     this.filmService.getFilmBySearch(value)
       .subscribe((res: FilmList) => {
-        console.log(res);
+        
         this.currentObj = res;
         this.currentList = res['results'];
         this.isLoaded = true;
         this.cdr.detectChanges();
       }, (err: Error) => {
-        console.log(err);
+        
       });
   }
 
@@ -45,13 +45,13 @@ export class FilmListComponent implements OnInit {
     this.isLoaded = false;
     this.filmService.getFilm()
      .subscribe((res: FilmList): void => {
-       console.log(res);
+       
        this.currentObj = res;
        this.currentList = res['results'];
        this.isLoaded = true;
        this.cdr.detectChanges();
      }, err => {
-       console.log(err);
+       
      })
   }
 
@@ -60,13 +60,13 @@ export class FilmListComponent implements OnInit {
     const pageQ = url.split(this.endpoint)[1];
     this.filmService.getFilmByPage(pageQ)
      .subscribe((res: FilmList) => {
-       console.log(res);
+       
        this.currentObj = res;
        this.currentList = res['results'];
        this.isLoaded = true;
        this.cdr.detectChanges();
      }, err => {
-       console.log(err);
+       
        
      })
   }

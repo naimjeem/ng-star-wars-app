@@ -34,7 +34,6 @@ export class PeopleDetailsComponent implements OnInit {
   getDetails(): void {
     this.peopleService.getPeopleById(this.peopleId)
       .subscribe((res: People): void => {
-        console.log(res);
         this.details = res;
         if (this.details.homeworld) {
           this.getHomeworld(this.details.homeworld);
@@ -42,18 +41,17 @@ export class PeopleDetailsComponent implements OnInit {
         this.isLoaded = true;
         this.cdr.detectChanges();
       }, (err: Error): void => {
-        console.log(err);
+        throw err;
       });
   }
 
   getHomeworld(url: string): void {
     this.peopleService.getPlanetById(url)
-      .subscribe((res: Planet) => {
-        console.log(res);
+      .subscribe((res: Planet): void => {
         this.homeworld = res['name'];
         this.cdr.detectChanges();
       }, (err: Error): void => {
-        console.log(err);
+        throw err;
       });
   }
 

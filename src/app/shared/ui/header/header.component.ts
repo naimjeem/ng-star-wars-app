@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     this.setMenu();
     const searchHistory = localStorage.getItem(this.searchType);
     this.recentSearches = JSON.parse(searchHistory as string);
-    console.log(this.recentSearches);
+    
     
   }
 
@@ -52,10 +52,10 @@ export class HeaderComponent implements OnInit {
   searchList(value: string): void {
     this.search.emit(value);
     this.query = value;
-    console.log(this.query);
+    
     this.recentSearches.unshift(this.query);
     this.recentSearches = [...new Set(this.recentSearches)];
-    console.log(this.recentSearches);
+    
     const updatedSearchArr = JSON.stringify(this.recentSearches)
     localStorage.setItem(this.searchType, updatedSearchArr);
     if (environment.config.search.count < this.recentSearches.length) {
