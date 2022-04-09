@@ -1,13 +1,12 @@
 <div class="topnav" *ngIf="recentSearches">
     <span class="btn-group mr-2" *ngIf="recentSearches.length > 0">
         Recent Searches: 
-        <a role="button" *ngFor="let item of recentSearches" (click)="searchInp.value = item">{{item}}</a>
+        <a role="button" *ngFor="let item of recentSearches" (click)="searchFromHistory(item)">{{item}}</a>
         <button class="btn btn-secondary btn-sm" (click)="clearSearch()">Clear</button>
     </span>
     <div class="search-container">
         <form>
-            <input type="text" placeholder="Search.." #searchInp>
-            <button type="button" class="btn btn-secondary" (click)="onSearch(searchInp.value)">Search</button>
+            <input type="text" placeholder="Enter keyword" (keydown.enter)="enterSearch($event)">
         </form>
     </div>
 </div>

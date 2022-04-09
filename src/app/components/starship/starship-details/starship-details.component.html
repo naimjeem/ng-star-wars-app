@@ -5,7 +5,7 @@
 <div *ngIf="isLoaded">
     <ul class="list-group">
         <li class="list-group-item">Title: {{details?.name}}</li>
-        <li class="list-group-item">Height: {{lengthType(details?.length)}}</li>
+        <li class="list-group-item">Height: {{details?.length | formatLength}}</li>
         <li class="list-group-item">Work in Progress</li>
     </ul>
 </div>

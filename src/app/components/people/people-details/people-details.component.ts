@@ -31,19 +31,6 @@ export class PeopleDetailsComponent implements OnInit {
     this.getDetails();
   }
 
-  heightType(value: string | any): string {
-    const height = parseInt(value);
-    if (height > 200) {
-      return 'High';
-    } else if (height > 100 && height < 200) {
-      return 'Normal';
-    } else if (height < 100) {
-      return 'Low';
-    } else {
-      return 'High';
-    }
-  }
-
   getDetails(): void {
     this.peopleService.getPeopleById(this.peopleId)
       .subscribe((res: People): void => {
@@ -65,7 +52,7 @@ export class PeopleDetailsComponent implements OnInit {
         console.log(res);
         this.homeworld = res['name'];
         this.cdr.detectChanges();
-      }, err => {
+      }, (err: Error): void => {
         console.log(err);
       });
   }

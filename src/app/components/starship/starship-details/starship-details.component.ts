@@ -29,19 +29,6 @@ export class StarshipDetailsComponent implements OnInit {
     this.getDetails();
   }
 
-  lengthType(value: string | any): string {
-    const height = parseInt(value);
-    if (height > 1000) {
-      return 'Large';
-    } else if (height > 100 && height < 1000) {
-      return 'Normal';
-    } else if (height < 100) {
-      return 'Small';
-    } else {
-      return 'Large';
-    }
-  }
-
   getDetails(): void {
     this.starshipService.getStarshipById(this.starshipId)
       .subscribe((res: Starship): void => {

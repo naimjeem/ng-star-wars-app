@@ -9,10 +9,8 @@ import { environment } from 'src/environments/environment';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
-  @ViewChild('searchInp') searchQ: ElementRef | any;
   @Input() searchType: string;
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
-  @Output() navigate: EventEmitter<string> = new EventEmitter<string>();
   showRecentSearch: boolean = false;
   query: string = '';
   recentSearches: [] | any;
@@ -41,11 +39,19 @@ export class HeaderComponent implements OnInit {
     ];
   }
 
-  onSearch(value: string): void {
-    console.log(this.route.snapshot.params);
-    
+  enterSearch(event: Event | any): void {
+    const value = event.target.value;    
+    this.searchList(value);
+    event.preventDefault();
+  }
+
+  searchFromHistory(value: string): void {
+    this.searchList(value);
+  }
+  
+  searchList(value: string): void {
     this.search.emit(value);
-    this.query = this.searchQ.nativeElement.value;
+    this.query = value;
     console.log(this.query);
     this.recentSearches.unshift(this.query);
     this.recentSearches = [...new Set(this.recentSearches)];
@@ -60,10 +66,6 @@ export class HeaderComponent implements OnInit {
   clearSearch(): void {
     this.recentSearches = [];
     localStorage.setItem(this.searchType, this.recentSearches);
-  }
-
-  navigateTo(url: string): void {
-    this.navigate.emit(url);
   }
 
 }

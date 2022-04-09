@@ -32,7 +32,4 @@ describe('PeopleDetailsComponent', () => {
   it('should get homeworld name', () => {
     return expect(component.getHomeworld('https://swapi.dev/api/planets/10/')).toEqual();
   });
-  it('should get heightType', () => {
-    expect(component.heightType('250')).toBe('High')
-  });
 });
