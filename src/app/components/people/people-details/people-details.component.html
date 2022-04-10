@@ -6,7 +6,7 @@
     <ul class="list-group">
         <li class="list-group-item">Title: {{details?.name}}</li>
         <li class="list-group-item">Height: {{details?.height | formatHeight}}</li>
-        <li class="list-group-item">Homeworld: {{homeworld}}</li>
+        <li class="list-group-item">Homeworld: {{(planet$ | async)?.name}}</li>
     </ul>
 </div>
 

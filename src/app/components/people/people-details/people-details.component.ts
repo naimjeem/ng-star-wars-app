@@ -4,6 +4,7 @@ import { People } from '../people';
 import { PeopleService } from '../people.service';
 import { Location } from '@angular/common';
 import { Planet } from '../../planet/planet';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-people-details',
@@ -15,7 +16,7 @@ export class PeopleDetailsComponent implements OnInit {
   endpoint: string;
   peopleId: string;
   details: People;
-  homeworld: string;
+  planet$: Observable<Planet>;
   isLoaded: boolean = false;
 
   constructor(
@@ -35,20 +36,8 @@ export class PeopleDetailsComponent implements OnInit {
     this.peopleService.getPeopleById(this.peopleId)
       .subscribe((res: People): void => {
         this.details = res;
-        if (this.details.homeworld) {
-          this.getHomeworld(this.details.homeworld);
-        }
+        this.planet$ = this.peopleService.getPlanetById(this.details.homeworld);
         this.isLoaded = true;
-        this.cdr.detectChanges();
-      }, (err: Error): void => {
-        throw err;
-      });
-  }
-
-  getHomeworld(url: string): void {
-    this.peopleService.getPlanetById(url)
-      .subscribe((res: Planet): void => {
-        this.homeworld = res['name'];
         this.cdr.detectChanges();
       }, (err: Error): void => {
         throw err;
