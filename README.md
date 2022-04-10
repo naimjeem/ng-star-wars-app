@@ -1,4 +1,4 @@
-# StarWars App
+# Star Wars App
 
 ## Development server
 
@@ -12,8 +12,8 @@ Header component has the nav link to navigate between routes
 
 To search from the list enter keyword in the search input, then it will fetch the updated list with search query from the API.
 
-On top left corner the recent search key history is available and it can be clicked to put the search keyword on the search input.
-search history count can be configured from config in `environment.common.ts` file.
+On top left corner the recent search key history is available and it can be clicked to search again with this keyword.
+search history `count` can be configured from config in `environment.common.ts` file.
 
 every list has pagination on bottom of the page.
 
