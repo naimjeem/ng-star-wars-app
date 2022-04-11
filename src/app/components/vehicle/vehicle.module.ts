@@ -5,6 +5,7 @@ import { VehicleRoutingModule } from './vehicle-routing.module';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { VehicleService } from './vehicle.service';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     SharedModule,
     VehicleRoutingModule
-  ]
+  ],
+  providers: [VehicleService]
 })
 export class VehicleModule { }

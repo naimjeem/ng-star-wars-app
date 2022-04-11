@@ -5,6 +5,7 @@ import { SpeciesRoutingModule } from './species-routing.module';
 import { SpeciesListComponent } from './species-list/species-list.component';
 import { SpeciesDetailsComponent } from './species-details/species-details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { SpeciesService } from './species.service';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     SharedModule,
     SpeciesRoutingModule
-  ]
+  ],
+  providers: [SpeciesService]
 })
 export class SpeciesModule { }
